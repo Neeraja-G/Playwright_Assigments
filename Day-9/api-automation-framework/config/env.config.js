@@ -1,0 +1,6 @@
+module.exports = {
+    baseURL: "https://restful-booker.herokuapp.com",
+
+    username: "admin",
+    password: "password123"
+};
