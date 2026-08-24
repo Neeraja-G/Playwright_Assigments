@@ -11,12 +11,12 @@ test('New user registration and existing user login', async ({ page }) => {
 
   await page.goto(urls.login)
 
-  const registerVisible =
-    await registrationPage.registerLink.isVisible()
+  // Check whether Register link is available
+  const registerVisible = await registrationPage.registerLink.isVisible()
 
   if (registerVisible) {
 
-    // New user
+    // New user registration
     await registrationPage.clickRegister()
 
     await registrationPage.enterRegistrationDetails(
@@ -27,7 +27,10 @@ test('New user registration and existing user login', async ({ page }) => {
 
     await registrationPage.createAccount()
 
-    // Sign in after account creation
+    // Go back to login page after registration
+    await page.goto(urls.login)
+
+    // Login with newly created account
     await loginPage.login(
       NewRegisterData.email,
       NewRegisterData.password
@@ -35,12 +38,18 @@ test('New user registration and existing user login', async ({ page }) => {
 
   } else {
 
-    // Existing user
+    // Existing user login
     await loginPage.login(
       NewRegisterData.email,
       NewRegisterData.password
     )
   }
 
+  // Verify successful login
   await expect(page).toHaveURL(urls.homepage)
+
+  // Save authentication state
+  await page.context().storageState({
+    path: 'auth/sessionstorage.json'
+  })
 })

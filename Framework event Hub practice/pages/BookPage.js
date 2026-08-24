@@ -1,21 +1,23 @@
+import { expect } from '@playwright/test';
 export class BookingPage {
   constructor(page) {
     this.page = page;
 
-    this.Book = page
-      .locator('.p-4')
-      .first()
-      .getByRole('link', { name: 'Book Now' });
+   this.Book = page.locator('.p-4').nth(2).getByRole('link', {
+  name: 'Book Now'
+});
 
     this.Fullname = page.getByPlaceholder('Your full name');
     this.Email = page.getByPlaceholder('you@email.com');
-    this.Phonenumber = page.getByPlaceholder('+919876543210');
+    this.Phonenumber = page.getByPlaceholder('+91 98765 43210');
 
     this.ConfirmBooking = page.getByRole('button', {
       name: 'Confirm Booking'
     });
 
-    this.SuccessMsg = page.getByText('Booking Confirmed! 🎉');
+     this.SuccessMsg = page.getByRole('heading', {
+      name: 'Booking Confirmed! 🎉'
+    });
   }
 
   async ClickBookNow() {
@@ -25,7 +27,7 @@ export class BookingPage {
   async BookTickets(fullname, email1, phonenumber) {
     await this.Fullname.fill(fullname);
     await this.Email.fill(email1);
-    await this.Phonenumber.fill(phonenumber);
+    await this.Phonenumber.fill(String(phonenumber));
   }
 
   async ClickConfirmBooking() {
@@ -33,6 +35,6 @@ export class BookingPage {
   }
 
   async BookingSuccessMessage() {
-    await this.SuccessMsg.toBeVisible();
+    await expect(this.SuccessMsg).toBeVisible();
   }
 }

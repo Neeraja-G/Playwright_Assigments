@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: Day-9/api-automation-framework
+        working-directory: Framework event Hub practice
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -26,5 +26,5 @@ jobs:
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
-        path: Day-9/api-automation-framework/playwright-report/
+        path: Framework event Hub practice
         retention-days: 30
