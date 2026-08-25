@@ -3,9 +3,10 @@ export class BookingPage {
   constructor(page) {
     this.page = page;
 
-   this.Book = page.locator('.p-4').nth(1).getByRole('link', {
-  name: 'Book Now'
-});
+    this.Book = page.locator('.p-4').nth(1).getByRole('link', {
+      name: 'Book Now'
+    });
+    this.soldOutMessage = page.getByText('SOLD OUT');
 
     this.Fullname = page.getByPlaceholder('Your full name');
     this.Email = page.getByPlaceholder('you@email.com');
@@ -15,7 +16,7 @@ export class BookingPage {
       name: 'Confirm Booking'
     });
 
-     this.SuccessMsg = page.getByRole('heading', {
+    this.SuccessMsg = page.getByRole('heading', {
       name: 'Booking Confirmed! 🎉'
     });
   }
@@ -23,7 +24,9 @@ export class BookingPage {
   async ClickBookNow() {
     await this.Book.click();
   }
-
+  async SoldOut(){
+    return await this.soldOutMessage.isVisible();
+  }
   async BookTickets(fullname, email1, phonenumber) {
     await this.Fullname.fill(fullname);
     await this.Email.fill(email1);
