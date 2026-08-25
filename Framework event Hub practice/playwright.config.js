@@ -12,7 +12,7 @@ export default defineConfig({
       use: {
         browserName: 'chromium',
         storageState: 'auth/sessionstorage.json',
-        screenshot:'on'
+        screenshot:'off'
       },
       dependencies: ['setup'],
     },

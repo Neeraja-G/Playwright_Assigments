@@ -8,6 +8,8 @@ export class BookingPage {
       name: 'Book Now'
     });
     this.bookNowButton = this.eventCard.getByTestId('book-now-btn');
+    this.mybookings = page.getByRole('button',{name: 'My Bookings'})
+    this.browseevents = page.getByRole('button',{name:"Browse Events →"})
 
     this.Fullname = page.getByPlaceholder('Your full name');
     this.Email = page.getByPlaceholder('you@email.com');
@@ -20,6 +22,10 @@ export class BookingPage {
     this.SuccessMsg = page.getByRole('heading', {
       name: 'Booking Confirmed! 🎉'
     });
+
+    this.Exploreallevents = page.getByRole('button', {
+      name: 'Explore All Events'
+    });
   }
 
   async ClickBookNow() {
@@ -27,6 +33,13 @@ export class BookingPage {
   }
   async SoldOut(){
     return (await this.bookNowButton.getAttribute('aria-disabled')) === 'true';
+  }
+  async MyBookins(){
+    await this.mybookings.click()
+  }
+
+  async BrowseEvents(){
+    await this.browseevents.click()
   }
   async BookTickets(fullname, email1, phonenumber) {
     await this.Fullname.fill(fullname);
@@ -40,5 +53,9 @@ export class BookingPage {
 
   async BookingSuccessMessage() {
     await expect(this.SuccessMsg).toBeVisible();
+  }
+
+  async ExploreAllEvents(){
+   await this.Exploreallevents.click()
   }
 }

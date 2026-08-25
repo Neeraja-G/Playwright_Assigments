@@ -43,6 +43,12 @@ test('Booking Event', async ({ page, Booking }) => {
 
     await expect(page).toHaveURL(urls.Booking);
 
+    await Booking.MyBookins();
+    await expect(page).toHaveURL(urls.ViewBooking)
+
+    await Booking.BrowseEvents();
+    await expect(page).toHaveURL(urls.addevent)
+
     await Booking.BookTickets(
         BookingTestData.fullname,
         BookingTestData.email1,
@@ -52,4 +58,5 @@ test('Booking Event', async ({ page, Booking }) => {
     await Booking.ClickConfirmBooking();
 
     await Booking.BookingSuccessMessage();
+    await Booking.ExploreAllEvents().toHaveURL(urls.events)
 });
