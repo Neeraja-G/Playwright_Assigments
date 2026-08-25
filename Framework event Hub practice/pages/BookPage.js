@@ -3,10 +3,11 @@ export class BookingPage {
   constructor(page) {
     this.page = page;
 
-    this.Book = page.locator('.p-4').nth(1).getByRole('link', {
+    this.eventCard = page.locator('.p-4').nth(1);
+    this.Book = this.eventCard.getByRole('link', {
       name: 'Book Now'
     });
-    this.soldOutMessage = page.getByText('SOLD OUT');
+    this.bookNowButton = this.eventCard.getByTestId('book-now-btn');
 
     this.Fullname = page.getByPlaceholder('Your full name');
     this.Email = page.getByPlaceholder('you@email.com');
@@ -25,7 +26,7 @@ export class BookingPage {
     await this.Book.click();
   }
   async SoldOut(){
-    return await this.soldOutMessage.isVisible();
+    return (await this.bookNowButton.getAttribute('aria-disabled')) === 'true';
   }
   async BookTickets(fullname, email1, phonenumber) {
     await this.Fullname.fill(fullname);
