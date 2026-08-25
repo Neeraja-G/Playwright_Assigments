@@ -3,7 +3,7 @@ export class BookingPage {
   constructor(page) {
     this.page = page;
 
-   this.Book = page.locator('.p-4').nth(2).getByRole('link', {
+   this.Book = page.locator('.p-4').nth(1).getByRole('link', {
   name: 'Book Now'
 });
 
