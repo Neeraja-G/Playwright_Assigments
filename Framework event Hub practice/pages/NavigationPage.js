@@ -7,6 +7,7 @@ export class Navigation {
         // Main navigation
         this.home = page.locator('#nav-home')
         this.events = page.locator('#nav-events');
+        this.viewall = page.getByRole('link',{name:'View all →'})
         this.mybooking = page.locator('#nav-bookings');
         this.apiDocs = page.getByRole('link', { name: 'API Docs' });
 
@@ -26,6 +27,10 @@ export class Navigation {
         await  this.events.click()
     }
 
+    async ViewAll(){
+        await this.viewall.click()
+    }
+    
     async MyBookingNavigation(){
         await  this.mybooking.click()
     }
