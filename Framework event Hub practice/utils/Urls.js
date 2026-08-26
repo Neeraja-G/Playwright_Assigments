@@ -6,5 +6,8 @@ export const urls = {
   ViewBooking:'https://eventhub.rahulshettyacademy.com/bookings',
   events: 'https://eventhub.rahulshettyacademy.com/events',
   addevent:'https://eventhub.rahulshettyacademy.com/admin/events',
+  managebooking:'https://eventhub.rahulshettyacademy.com/admin/bookings',
+  apiDocs:'https://api.eventhub.rahulshettyacademy.com/api/docs/'
+
 
 }
